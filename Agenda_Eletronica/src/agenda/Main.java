@@ -4,6 +4,7 @@ package agenda;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,14 @@ import java.util.Scanner;
 public class Main {
 
 	// Main da agenda
+	
+	// Formatadores para data e hora no padrão brasileiro
+    private static final DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
 
 	public static void main(String[] args) {
 		    
+	    
 		    	// criação do scanner coletor para aplicar as opções
 		    	
 		    	
@@ -138,15 +144,23 @@ public class Main {
 
 	}
 
-	// Função para listar eventos futuros - ABNER
-	public static void compromissosFuturos(List<String[]> compromissos) {
+	// Função para listar compromissos futuros - ABNER
+	public static void listarCompromissosFuturos(List<String[]> TodosCompromissos) {
+		
 		System.out.println("Compromissos futuros:");
-
-		for (String[] compromisso : compromissos) {
-			LocalDate dataCompromisso = LocalDate.parse(compromisso[0], formatoData);
-			if (dataCompromisso.isAfter(LocalDate.now())) {
-				System.out.println("Data: " + compromisso[0] + " Hora: " + compromisso[1] + " Descrição: "
-						+ compromisso[2] + " Local: " + compromisso[3]);
+		
+		for (int i = 0; i < TodosCompromissos.size(); i++) {
+			
+			String[] compromissoIteracao = TodosCompromissos.get(i);
+			
+			LocalDate dataCompromissofuturoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
+			
+			// verifica se o compromisso da iteração atual é futuro e printa ele
+			if (dataCompromissofuturoEncontrado.isAfter(LocalDate.now())) {
+				
+				System.out.println("Data: " + compromissoIteracao[0] + " Hora: " + compromissoIteracao[1] + " Descrição: "
+						+ compromissoIteracao[2] + " Local: " + compromissoIteracao[3]);
+				
 			}
 		}
 	}
