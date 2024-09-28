@@ -13,77 +13,72 @@ import java.util.Scanner;
 public class Main {
 
 	// Main da agenda
-	
-	// Formatadores para data e hora no padrão brasileiro
-    private static final DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
 
 	public static void main(String[] args) {
-		    
-	    
-		    	// criação do scanner coletor para aplicar as opções
-		    	
-		    	
-		    	List<String[]> compromissos = new ArrayList<>();
-		    	
-		    	Scanner coletor = new Scanner(System.in);
-		    	
-		    			        
-		        // analisa os dados ja existentes
-		        
-		        leituraDosDados(compromissos);
-		        
-		        // variaveis de funcionamento e coleta de opções 
-		        int opcoes;
-		        boolean funcionamento;
-		        funcionamento = true;
-		        
 
-		        while(funcionamento==true) {
-		        	System.out.println("\n************ AGENDA ************\n");
-		        	System.out.println("1 - Cadastrar novo compromisso");
-		            System.out.println("2 - Editar um compromisso");
-		            System.out.println("3 - Remover um ompromisso");
-		            System.out.println("4 - Listar compromissos futuros");
-		            System.out.println("5 - Buscar Compromissos (DATA/HORA");
-		            System.out.println("6 - Encerrar AGENDA");
-		            System.out.println("*******************************");
-		            opcoes = coletor.nextInt();
-		            
-		            //pula a linha 
-		            coletor.nextLine();  
+		
 
-		            switch (opcoes) {
-		                case 1:
-		                	cadastro(coletor, compromissos);
-		                    registrarCompromissos(compromissos);
-		                    break;
-		                case 2:
-		                	editar(coletor, compromissos);
-		                    registrarCompromissos(compromissos);
-		                    break;
-		                case 3:
-		                	remover(coletor, compromissos);
-		                    registrarCompromissos(compromissos);
-		                    break;
-		                case 4:
-		                	compromissosFuturos(compromissos);
-		                    break;
-		                case 5:
-		                	buscaPorData(coletor, compromissos);
-		                    break;
-		                case 6:
-		                    System.out.println("Encerrando a Agenda");
-		                    funcionamento = false;
-		                    
-		                    break;
-		                default:
-		                    System.out.println("Opção inválida. Tente novamente!");
-		            }
+		// criação do scanner coletor para aplicar as opções
+
+		List<String[]> compromissos = new ArrayList<>();
+
+		Scanner input = new Scanner(System.in);
+
+		// analisa os dados ja existentes
+
+		leituraDosDados(compromissos);
+
+		// variaveis de funcionamento e coleta de opções
+		int opcoes;
+		boolean funcionamento;
+		funcionamento = true;
+
+		while (funcionamento == true) {
+			System.out.println("\n************ AGENDA ************\n");
+			System.out.println("1 - Cadastrar novo compromisso");
+			System.out.println("2 - Editar um compromisso");
+			System.out.println("3 - Remover um compromisso");
+			System.out.println("4 - Listar compromissos futuros");
+			System.out.println("5 - Buscar compromissos (DATA)");
+			System.out.println("6 - Encerrar AGENDA");
+			System.out.println("\n*******************************\n");
+			opcoes = input.nextInt();
+
+			// pula a linha
+			input.nextLine();
+
+			switch (opcoes) {
+			case 1:
+				cadastro(input, compromissos);
+				registrarCompromissos(compromissos);
+				break;
+			case 2:
+				editar(input, compromissos);
+				registrarCompromissos(compromissos);
+				break;
+			case 3:
+				remover(input, compromissos);
+				registrarCompromissos(compromissos);
+				break;
+			case 4:
+				compromissosFuturos(compromissos);
+				break;
+			case 5:
+				buscaPorData(input, compromissos);
+				break;
+			case 6:
+				System.out.println("Encerrando a Agenda");
+				funcionamento = false;
+
+				break;
+			default:
+				System.out.println("Opção inválida. Tente novamente!");
+			}
+		}
+	}
 
 	// Cadastrando o compromisso na agenda
-	public static void cadastro(List<String[]> compromissos) {
-		Scanner input = new Scanner(System.in);
+	public static void cadastro(Scanner input, List<String[]> compromissos) {
 		String loc, data, desc, hr;
 
 		System.out.println("Data do compromisso: [dd/mm/aaaa]");
@@ -105,8 +100,8 @@ public class Main {
 	}
 	// Editando um compromisso da agenda
 
-	public static void editar(List<String[]> compromissos) {
-		Scanner input = new Scanner(System.in);
+	public static void editar(Scanner input, List<String[]> compromissos) {
+		listarTodosCompromissos(compromissos);
 		String data, hr, desc, loc;
 		int i;
 		;
@@ -132,8 +127,8 @@ public class Main {
 	}
 
 	// Removendo um compromisso da agenda
-	public static void remover(List<String[]> compromissos) {
-		Scanner input = new Scanner(System.in);
+	public static void remover(Scanner input, List<String[]> compromissos) {
+		listarTodosCompromissos(compromissos);
 		int i;
 		System.out.println("Digite a posição do compromisso que deseja remover:");
 		i = input.nextInt();
@@ -145,22 +140,24 @@ public class Main {
 	}
 
 	// Função para listar compromissos futuros - ABNER
-	public static void listarCompromissosFuturos(List<String[]> TodosCompromissos) {
-		
+	public static void compromissosFuturos(List<String[]> TodosCompromissos) {
+		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+
 		System.out.println("Compromissos futuros:");
-		
+
 		for (int i = 0; i < TodosCompromissos.size(); i++) {
-			
+
 			String[] compromissoIteracao = TodosCompromissos.get(i);
-			
+
 			LocalDate dataCompromissofuturoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
-			
+
 			// verifica se o compromisso da iteração atual é futuro e printa ele
 			if (dataCompromissofuturoEncontrado.isAfter(LocalDate.now())) {
-				
-				System.out.println("Data: " + compromissoIteracao[0] + " Hora: " + compromissoIteracao[1] + " Descrição: "
-						+ compromissoIteracao[2] + " Local: " + compromissoIteracao[3]);
-				
+
+				System.out.println("Data: " + compromissoIteracao[0] + " Hora: " + compromissoIteracao[1]
+						+ " Descrição: " + compromissoIteracao[2] + " Local: " + compromissoIteracao[3]);
+
 			}
 		}
 	}
@@ -203,4 +200,46 @@ public class Main {
 
 		}
 	}
+
+	// Jhonatan
+
+	// função que le os compromissos registrados em um arquivo ja existente na raiz
+	// do codigo (no caso do nosso codigo, fica localizado na mesma pasta do codigo.
+
+	// Base lista 9 Natan
+
+	public static void leituraDosDados(List<String[]> compromissos) {
+
+		try (BufferedReader leitor = new BufferedReader(new FileReader("compromissos.txt"))) {
+			String linha;
+			while ((linha = leitor.readLine()) != null) {
+				String[] compromisso = linha.split(",");
+				compromissos.add(compromisso);
+			}
+			System.out.println("Informações carregados com sucesso.");
+		} catch (IOException e) {
+			System.out.println("Nenhum registro encontrado.Tente novamente!");
+		}
+	}
+
+	// Função para salvar os compromissos no arquivo criado ou ja existente.
+
+	// Base lista 9 Natan
+
+	public static void registrarCompromissos(List<String[]> compromissos) {
+
+		// cria um leitor para ler o arqurivo compromissos
+		try (FileWriter registrador = new FileWriter("compromissos.txt")) {
+			for (int i = 0; i < compromissos.size(); i++) {
+				String[] compromisso = compromissos.get(i);
+				registrador.write(String.join(",", compromisso));
+				registrador.write(System.lineSeparator());
+			}
+			System.out.println("Informações registradas com sucesso.");
+		} catch (IOException e) {
+			System.out.println("Erro ao registrar as informações. Tente novamente!");
+		}
+
+	}
+
 }
