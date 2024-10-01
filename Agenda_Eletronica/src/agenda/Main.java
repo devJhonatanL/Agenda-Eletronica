@@ -3,7 +3,6 @@ package agenda;
 //import para funcionamento 
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.io.*;
 import java.util.ArrayList;
@@ -16,12 +15,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		
-
-		// criação do scanner coletor para aplicar as opções
 
 		List<String[]> compromissos = new ArrayList<>();
-
+		
+		// criação do scanner coletor para aplicar as opções
+		
 		Scanner input = new Scanner(System.in);
 
 		// analisa os dados ja existentes
@@ -39,8 +37,10 @@ public class Main {
 			System.out.println("2 - Editar um compromisso");
 			System.out.println("3 - Remover um compromisso");
 			System.out.println("4 - Listar compromissos futuros");
-			System.out.println("5 - Buscar compromissos (DATA)");
-			System.out.println("6 - Encerrar AGENDA");
+			System.out.println("5 - Listar compromissos futuros");
+			System.out.println("6 - Listar compromissos futuros");
+			System.out.println("7 - Buscar compromissos (DATA)");
+			System.out.println("8 - Encerrar AGENDA");
 			System.out.println("\n*******************************\n");
 			opcoes = input.nextInt();
 
@@ -66,7 +66,7 @@ public class Main {
 			case 5:
 				buscaPorData(input, compromissos);
 				break;
-			case 6:
+			case 8:
 				System.out.println("Encerrando a Agenda");
 				funcionamento = false;
 
@@ -142,7 +142,7 @@ public class Main {
 	// Função para listar compromissos futuros - ABNER
 	public static void compromissosFuturos(List<String[]> TodosCompromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm");
+		
 
 		System.out.println("Compromissos futuros:");
 
