@@ -3,6 +3,7 @@ package agenda;
 //import para funcionamento 
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.io.*;
 import java.util.ArrayList;
@@ -62,6 +63,9 @@ public class Main {
 				compromissosFuturos(compromissos);
 				break;
 			case 5:
+				compromissosPassados(compromissos);
+				break;
+			case 7:
 				buscaPorData(input, compromissos);
 				break;
 			case 6:
@@ -82,32 +86,31 @@ public class Main {
 	public static void cadastro(Scanner input, List<String[]> compromissos) {
 		String loc, data, desc, hr;
 
-		System.out.println("Data do compromisso: [dd/mm/aaaa]:");
+		System.out.println("\nData do compromisso: [dd/mm/aaaa]:\n");
 		data = input.nextLine();
 		formatoData(input, data);
 
-		System.out.println("Digite o horario: [HH:MM]:");
+		System.out.println("\nDigite o horario: [HH:MM]:\n");
 		hr = input.nextLine();
 		formatoHora(input, hr);
-		
-		// Verifica se já existe um compromisso com a mesma data e hora
-	    for (int i = 0; i < compromissos.size(); i++) {
-	        String[] compromisso = compromissos.get(i);
-	        
-	        // se já existir, ele exibe para o usuário e retorna na função
-	        if (compromisso[0].equals(data) && compromisso[1].equals(hr)) {
-	            System.out.println(" **Já existe um compromisso com essa data e hora** ");
-	            
-	            
-	            cadastro(input, compromissos);  // Chama novamente o cadastro
-	            return;  // Interrompe a execução da função atual para evitar continuar
-	        }
-	    }
 
-		System.out.println("Digite a  descrição do compromisso:");
+		// Verifica se já existe um compromisso com a mesma data e hora
+		for (int i = 0; i < compromissos.size(); i++) {
+			String[] compromisso = compromissos.get(i);
+
+			// se já existir, ele exibe para o usuário e retorna na função
+			if (compromisso[0].equals(data) && compromisso[1].equals(hr)) {
+				System.out.println("\n **Já existe um compromisso com essa data e hora**\n");
+
+				cadastro(input, compromissos); // Chama novamente o cadastro
+				return; // Interrompe a execução da função atual para evitar continuar
+			}
+		}
+
+		System.out.println("\nDigite a  descrição do compromisso:\n");
 		desc = input.nextLine();
 
-		System.out.println("Digite o local do compromisso: ");
+		System.out.println("\nDigite o local do compromisso: \n");
 		loc = input.nextLine();
 		String[] compromisso = { data, hr, desc, loc };
 		compromissos.add(compromisso);
@@ -124,32 +127,32 @@ public class Main {
 
 		System.out.println("\nDigite o ID do compromisso que deseja editar:");
 		i = input.nextInt();
-		i = i-1;
+		i = i - 1;
 
 		if (i >= 0 && i < compromissos.size()) {
 			input.nextLine(); // Consumir o \n que sobrou do nextInt()
 
-			System.out.println("Nova Data do compromisso: [dd/mm/aaaa] (deixe em branco não quiser alterar)");
+			System.out.println("\nNova Data do compromisso: [dd/mm/aaaa] (deixe em branco não quiser alterar)\n");
 			data = input.nextLine();
 			if (data.isBlank()) {
 				data = compromissos.get(i)[0]; // Mantém o valor anterior se for enviado um espaço em branco
 			}
 			formatoData(input, data);
 
-			System.out.println("Digite o novo horário: [HH:MM] (deixe em branco não quiser alterar)");
+			System.out.println("\nDigite o novo horário: [HH:MM] (deixe em branco não quiser alterar)\n");
 			hr = input.nextLine();
 			if (hr.isBlank()) {
 				hr = compromissos.get(i)[1]; // Mantém o valor anterior se for enviado um espaço em branco
 			}
 			formatoHora(input, hr);
 
-			System.out.println("Digite a nova descrição do compromisso: (deixe em branco não quiser alterar)");
+			System.out.println("\nDigite a nova descrição do compromisso: (deixe em branco não quiser alterar)\n");
 			desc = input.nextLine();
 			if (desc.isBlank()) {
 				desc = compromissos.get(i)[2]; // Mantém o valor anterior se for enviado um espaço em branco
 			}
 
-			System.out.println("Digite o novo local do compromisso: (deixe em branco não quiser alterar)");
+			System.out.println("\nDigite o novo local do compromisso: (deixe em branco não quiser alterar)\n");
 			loc = input.nextLine();
 			if (loc.isBlank()) {
 				loc = compromissos.get(i)[3]; // Mantém o valor anterior se for enviado um espaço em branco
@@ -161,23 +164,22 @@ public class Main {
 		} else {
 			System.out.println("\n **ID invalido, digite  novamente**\n");
 			editar(input, compromissos);
-			
+
 		}
-		
-		
+
 	}
 
 	// Removendo um compromisso da agenda
 	public static void remover(Scanner input, List<String[]> compromissos) {
 		listarTodosCompromissos(compromissos);
 		int i;
-		System.out.println("Digite o ID do compromisso que deseja remover:");
+		System.out.println("\nDigite o ID do compromisso que deseja remover:\n");
 		i = input.nextInt();
-		i = i -1;
+		i = i - 1;
 		if (i >= 0 && i < compromissos.size()) {
-			
-		compromissos.remove(i);
-		} else { 
+
+			compromissos.remove(i);
+		} else {
 			System.out.println("\n **ID invalido, digite  novamente**\n");
 			remover(input, compromissos);
 		}
@@ -187,7 +189,7 @@ public class Main {
 	public static void compromissosFuturos(List<String[]> TodosCompromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-		System.out.println("Compromissos futuros:");
+		System.out.println("\nCompromissos futuros:\n");
 
 		for (int i = 0; i < TodosCompromissos.size(); i++) {
 
@@ -205,11 +207,34 @@ public class Main {
 		}
 	}
 
+	public static void compromissosPassados(List<String[]> TodosCompromissos) {
+		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:mm");
+
+		System.out.println("\nCompromissos Passados:\n");
+
+		for (int i = 0; i < TodosCompromissos.size(); i++) {
+
+			String[] compromissoIteracao = TodosCompromissos.get(i);
+
+			LocalDate dataCompromissoPassadoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
+			LocalTime horaComprimissoPassadoEncontrado = LocalTime.parse(compromissoIteracao[1], formatohora);
+
+			
+			if (dataCompromissoPassadoEncontrado.isBefore(LocalDate.now()) ||dataCompromissoPassadoEncontrado.isEqual(LocalDate.now()) && horaComprimissoPassadoEncontrado.isBefore(LocalTime.now())) {
+
+				System.out.println("Data: " + compromissoIteracao[0] + " Hora: " + compromissoIteracao[1]
+						+ " Descrição: " + compromissoIteracao[2] + " Local: " + compromissoIteracao[3]);
+
+			}
+		}
+	}
+
 	// Função para buscar data específica inserida pelo usuário e exibir em tela
 	public static void buscaPorData(Scanner scanner, List<String[]> todosCompromissos) {
 
 		// Solicitando valor
-		System.out.println("Digite a data para busca (dd/mm/aaaa): ");
+		System.out.println("\nDigite a data para busca (dd/mm/aaaa): \n");
 		String dataFuturaBusca = scanner.nextLine();
 
 		// verificando os compromissos com base na data
@@ -238,7 +263,7 @@ public class Main {
 			String[] compromissoAtual = todosCompromissos.get(i);
 
 			// exibindo compromissos cadastrados
-			System.out.printf("%d. Data: %s | Hora: %s | Descrição: %s | Local: %s%n", i + 1, compromissoAtual[0],
+			System.out.printf("\n%d. Data: %s | Hora: %s | Descrição: %s | Local: %s%n", i + 1, compromissoAtual[0],
 					compromissoAtual[1], compromissoAtual[2], compromissoAtual[3]);
 
 		}
@@ -259,9 +284,9 @@ public class Main {
 				String[] compromisso = linha.split(",");
 				compromissos.add(compromisso);
 			}
-			System.out.println("Informações carregados com sucesso.");
+			System.out.println("\n **Informações carregados com sucesso.**\n");
 		} catch (IOException e) {
-			System.out.println("Nenhum registro encontrado.Tente novamente!");
+			System.out.println("\n **Nenhum registro encontrado.Tente novamente!** \n");
 		}
 	}
 
@@ -278,24 +303,28 @@ public class Main {
 				registrador.write(String.join(",", compromisso));
 				registrador.write(System.lineSeparator());
 			}
-			System.out.println("Informações registradas com sucesso.");
+			System.out.println("\n **Informações registradas com sucesso.** \n");
 		} catch (IOException e) {
 			System.out.println("Erro ao registrar as informações. Tente novamente!");
 		}
 	}
+
 	public static String formatoData(Scanner input, String data) {
-		if(data.matches("\\d{2}\\/\\d{2}\\/\\d{4}")) {
+		if (data.matches("\\d{2}\\/\\d{2}\\/\\d{4}")) {
 			return data;
-		}else { System.out.println("Digite a data no formato correto: ");
-				data = input.nextLine();
+		} else {
+			System.out.println("\n Digite a data no formato correto: \n");
+			data = input.nextLine();
 			return formatoData(input, data);
 		}
 	}
+
 	public static String formatoHora(Scanner input, String hr) {
-		if(hr.matches("\\d{2}\\:\\d{2}")) {
+		if (hr.matches("\\d{2}\\:\\d{2}")) {
 			return hr;
-		}else { System.out.println("Digite a hora no formato correto: ");
-				hr = input.nextLine();
+		} else {
+			System.out.println("\n Digite a hora no formato correto: \n");
+			hr = input.nextLine();
 			return formatoHora(input, hr);
 		}
 	}
