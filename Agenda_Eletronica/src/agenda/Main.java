@@ -110,7 +110,7 @@ public class Main {
 
 		System.out.println("\nDigite o ID do compromisso que deseja editar:");
 		i = input.nextInt();
-		
+		i = i-1;
 
 		if (i >= 0 && i < compromissos.size()) {
 			input.nextLine(); // Consumir o \n que sobrou do nextInt()
@@ -159,7 +159,7 @@ public class Main {
 		int i;
 		System.out.println("Digite o ID do compromisso que deseja remover:");
 		i = input.nextInt();
-		
+		i = i -1;
 		if (i >= 0 && i < compromissos.size()) {
 			
 		compromissos.remove(i);
@@ -224,7 +224,7 @@ public class Main {
 			String[] compromissoAtual = todosCompromissos.get(i);
 
 			// exibindo compromissos cadastrados
-			System.out.printf("%d. Data: %s | Hora: %s | Descrição: %s | Local: %s%n", i, compromissoAtual[0],
+			System.out.printf("%d. Data: %s | Hora: %s | Descrição: %s | Local: %s%n", i + 1, compromissoAtual[0],
 					compromissoAtual[1], compromissoAtual[2], compromissoAtual[3]);
 
 		}
