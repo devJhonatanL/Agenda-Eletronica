@@ -112,20 +112,34 @@ public class Main {
 		i = input.nextInt();
 		i = i - 1;
 		if (i >= 0 && i < compromissos.size()) {
-			System.out.println("Nova Data do compromisso: [dd/mm/aaaa]");
-			data = input.nextLine();
-			input.nextLine();
+	        input.nextLine(); // Consumir o \n que sobrou do nextInt()
 
-			System.out.println("Digite o novo horario: [HH:MM]");
-			hr = input.nextLine();
-			
-			System.out.println("Digite a nova descrição do compromisso:");
-			desc = input.nextLine();
+	        System.out.println("Nova Data do compromisso: [dd/mm/aaaa] (deixe em branco não quiser alterar)");
+	        data = input.nextLine();
+	        if (data.isBlank()) {
+	            data = compromissos.get(i)[0];  // Mantém o valor anterior se for enviado um espaço em branco
+	        }
 
-			System.out.println("Digite o novo local do compromisso: ");
-			loc = input.nextLine();
-			String[] compromisso = { data, hr, desc, loc };
-			compromissos.set(i, compromisso);
+	        System.out.println("Digite o novo horário: [HH:MM] (deixe em branco não quiser alterar)");
+	        hr = input.nextLine();
+	        if (hr.isBlank()) {
+	            hr = compromissos.get(i)[1];  // Mantém o valor anterior se for enviado um espaço em branco
+	            }
+
+	        System.out.println("Digite a nova descrição do compromisso: (deixe em branco não quiser alterar)");
+	        desc = input.nextLine();
+	        if (desc.isBlank()) {
+	            desc = compromissos.get(i)[2];  // Mantém o valor anterior se for enviado um espaço em branco
+	        }
+
+	        System.out.println("Digite o novo local do compromisso: (deixe em branco não quiser alterar)");
+	        loc = input.nextLine();
+	        if (loc.isBlank()) {
+	            loc = compromissos.get(i)[3];  // Mantém o valor anterior se for enviado um espaço em branco
+	        }
+
+	        String[] compromisso = { data, hr, desc, loc };
+	        compromissos.set(i, compromisso);
 
 		}
 	}
