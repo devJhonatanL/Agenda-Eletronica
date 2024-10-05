@@ -66,6 +66,9 @@ public class Main {
 			case 5:
 				buscaPorData(input, compromissos);
 				break;
+			case 6:
+				listarTodosCompromissos(compromissos);
+				break;
 			case 8:
 				System.out.println("Encerrando a Agenda");
 				funcionamento = false;
