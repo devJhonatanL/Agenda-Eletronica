@@ -11,15 +11,14 @@ import java.util.Scanner;
 
 public class Main {
 
+	
+
 	// Main da agenda
 
 	public static void main(String[] args) {
-
-
 		List<String[]> compromissos = new ArrayList<>();
-		
 		// criação do scanner coletor para aplicar as opções
-		
+
 		Scanner input = new Scanner(System.in);
 
 		// analisa os dados ja existentes
@@ -27,27 +26,28 @@ public class Main {
 		leituraDosDados(compromissos);
 
 		// variaveis de funcionamento e coleta de opções
-		int opcoes;
+		
+		int escolhaDoUsuario;
 		boolean funcionamento;
 		funcionamento = true;
 
 		while (funcionamento == true) {
 			System.out.println("\n************ AGENDA ************\n");
-			System.out.println("1 - Cadastrar novo compromisso");
+			System.out.println("1 - Cadastrar um novo compromisso");
 			System.out.println("2 - Editar um compromisso");
 			System.out.println("3 - Remover um compromisso");
 			System.out.println("4 - Listar compromissos futuros");
-			System.out.println("5 - Listar compromissos futuros");
-			System.out.println("6 - Listar compromissos futuros");
+			System.out.println("5 - Listar compromissos passados");
+			System.out.println("6 - Listar todos os compromissos");
 			System.out.println("7 - Buscar compromissos (DATA)");
 			System.out.println("8 - Encerrar AGENDA");
 			System.out.println("\n*******************************\n");
-			opcoes = input.nextInt();
+			escolhaDoUsuario = input.nextInt();
 
 			// pula a linha
 			input.nextLine();
 
-			switch (opcoes) {
+			switch (escolhaDoUsuario) {
 			case 1:
 				cadastro(input, compromissos);
 				registrarCompromissos(compromissos);
@@ -104,7 +104,7 @@ public class Main {
 		listarTodosCompromissos(compromissos);
 		String data, hr, desc, loc;
 		int i;
-		;
+
 		System.out.println("Digite a posição do compromisso que deseja editar:");
 		i = input.nextInt();
 		i = i - 1;
@@ -142,7 +142,6 @@ public class Main {
 	// Função para listar compromissos futuros - ABNER
 	public static void compromissosFuturos(List<String[]> TodosCompromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		
 
 		System.out.println("Compromissos futuros:");
 
