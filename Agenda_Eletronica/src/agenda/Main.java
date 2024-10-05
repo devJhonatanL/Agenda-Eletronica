@@ -11,8 +11,6 @@ import java.util.Scanner;
 
 public class Main {
 
-	
-
 	// Main da agenda
 
 	public static void main(String[] args) {
@@ -26,7 +24,7 @@ public class Main {
 		leituraDosDados(compromissos);
 
 		// variaveis de funcionamento e coleta de opções
-		
+
 		int escolhaDoUsuario;
 		boolean funcionamento;
 		funcionamento = true;
@@ -108,40 +106,47 @@ public class Main {
 		String data, hr, desc, loc;
 		int i;
 
-		System.out.println("Digite o ID do compromisso que deseja editar:");
+		System.out.println("\nDigite o ID do compromisso que deseja editar:");
 		i = input.nextInt();
-		i = i - 1;
+		
+
 		if (i >= 0 && i < compromissos.size()) {
-	        input.nextLine(); // Consumir o \n que sobrou do nextInt()
+			input.nextLine(); // Consumir o \n que sobrou do nextInt()
 
-	        System.out.println("Nova Data do compromisso: [dd/mm/aaaa] (deixe em branco não quiser alterar)");
-	        data = input.nextLine();
-	        if (data.isBlank()) {
-	            data = compromissos.get(i)[0];  // Mantém o valor anterior se for enviado um espaço em branco
-	        }
+			System.out.println("Nova Data do compromisso: [dd/mm/aaaa] (deixe em branco não quiser alterar)");
+			data = input.nextLine();
+			if (data.isBlank()) {
+				data = compromissos.get(i)[0]; // Mantém o valor anterior se for enviado um espaço em branco
+			}
 
-	        System.out.println("Digite o novo horário: [HH:MM] (deixe em branco não quiser alterar)");
-	        hr = input.nextLine();
-	        if (hr.isBlank()) {
-	            hr = compromissos.get(i)[1];  // Mantém o valor anterior se for enviado um espaço em branco
-	            }
+			System.out.println("Digite o novo horário: [HH:MM] (deixe em branco não quiser alterar)");
+			hr = input.nextLine();
+			if (hr.isBlank()) {
+				hr = compromissos.get(i)[1]; // Mantém o valor anterior se for enviado um espaço em branco
+			}
 
-	        System.out.println("Digite a nova descrição do compromisso: (deixe em branco não quiser alterar)");
-	        desc = input.nextLine();
-	        if (desc.isBlank()) {
-	            desc = compromissos.get(i)[2];  // Mantém o valor anterior se for enviado um espaço em branco
-	        }
+			System.out.println("Digite a nova descrição do compromisso: (deixe em branco não quiser alterar)");
+			desc = input.nextLine();
+			if (desc.isBlank()) {
+				desc = compromissos.get(i)[2]; // Mantém o valor anterior se for enviado um espaço em branco
+			}
 
-	        System.out.println("Digite o novo local do compromisso: (deixe em branco não quiser alterar)");
-	        loc = input.nextLine();
-	        if (loc.isBlank()) {
-	            loc = compromissos.get(i)[3];  // Mantém o valor anterior se for enviado um espaço em branco
-	        }
+			System.out.println("Digite o novo local do compromisso: (deixe em branco não quiser alterar)");
+			loc = input.nextLine();
+			if (loc.isBlank()) {
+				loc = compromissos.get(i)[3]; // Mantém o valor anterior se for enviado um espaço em branco
+			}
 
-	        String[] compromisso = { data, hr, desc, loc };
-	        compromissos.set(i, compromisso);
+			String[] compromisso = { data, hr, desc, loc };
+			compromissos.set(i, compromisso);
 
+		} else {
+			System.out.println("\n **ID invalido, digite  novamente**\n");
+			editar(input, compromissos);
+			
 		}
+		
+		
 	}
 
 	// Removendo um compromisso da agenda
@@ -150,11 +155,14 @@ public class Main {
 		int i;
 		System.out.println("Digite o ID do compromisso que deseja remover:");
 		i = input.nextInt();
-		i = i - 1;
-		if (i >= 0 && i < compromissos.size())
-			;
+		
+		if (i >= 0 && i < compromissos.size()) {
+			
 		compromissos.remove(i);
-
+		} else { 
+			System.out.println("\n **ID invalido, digite  novamente**\n");
+			remover(input, compromissos);
+		}
 	}
 
 	// Função para listar compromissos futuros - ABNER
