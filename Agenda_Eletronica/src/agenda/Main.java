@@ -84,10 +84,10 @@ public class Main {
 	public static void cadastro(Scanner input, List<String[]> compromissos) {
 		String loc, data, desc, hr;
 
-		System.out.println("Data do compromisso: [dd/mm/aaaa]");
+		System.out.println("Data do compromisso: [dd/mm/aaaa]:");
 		data = input.nextLine();
 
-		System.out.println("Digite o horario: [HH:MM]");
+		System.out.println("Digite o horario: [HH:MM]:");
 		hr = input.nextLine();
 
 		System.out.println("Digite a  descrição do compromisso:");
@@ -108,7 +108,7 @@ public class Main {
 		String data, hr, desc, loc;
 		int i;
 
-		System.out.println("Digite a posição do compromisso que deseja editar:");
+		System.out.println("Digite o ID do compromisso que deseja editar:");
 		i = input.nextInt();
 		i = i - 1;
 		if (i >= 0 && i < compromissos.size()) {
@@ -134,7 +134,7 @@ public class Main {
 	public static void remover(Scanner input, List<String[]> compromissos) {
 		listarTodosCompromissos(compromissos);
 		int i;
-		System.out.println("Digite a posição do compromisso que deseja remover:");
+		System.out.println("Digite o ID do compromisso que deseja remover:");
 		i = input.nextInt();
 		i = i - 1;
 		if (i >= 0 && i < compromissos.size())
@@ -242,7 +242,6 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println("Erro ao registrar as informações. Tente novamente!");
 		}
-
 	}
 
 }
