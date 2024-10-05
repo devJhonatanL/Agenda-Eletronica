@@ -84,9 +84,11 @@ public class Main {
 
 		System.out.println("Data do compromisso: [dd/mm/aaaa]:");
 		data = input.nextLine();
+		formatoData(input, data);
 
 		System.out.println("Digite o horario: [HH:MM]:");
 		hr = input.nextLine();
+		formatoHora(input, hr);
 
 		System.out.println("Digite a  descrição do compromisso:");
 		desc = input.nextLine();
@@ -118,12 +120,14 @@ public class Main {
 			if (data.isBlank()) {
 				data = compromissos.get(i)[0]; // Mantém o valor anterior se for enviado um espaço em branco
 			}
+			formatoData(input, data);
 
 			System.out.println("Digite o novo horário: [HH:MM] (deixe em branco não quiser alterar)");
 			hr = input.nextLine();
 			if (hr.isBlank()) {
 				hr = compromissos.get(i)[1]; // Mantém o valor anterior se for enviado um espaço em branco
 			}
+			formatoHora(input, hr);
 
 			System.out.println("Digite a nova descrição do compromisso: (deixe em branco não quiser alterar)");
 			desc = input.nextLine();
@@ -265,5 +269,20 @@ public class Main {
 			System.out.println("Erro ao registrar as informações. Tente novamente!");
 		}
 	}
-
+	public static String formatoData(Scanner input, String data) {
+		if(data.matches("\\d{2}\\/\\d{2}\\/\\d{4}")) {
+			return data;
+		}else { System.out.println("Digite a data no formato correto: ");
+				data = input.nextLine();
+			return formatoData(input, data);
+		}
+	}
+	public static String formatoHora(Scanner input, String hr) {
+		if(hr.matches("\\d{2}\\:\\d{2}")) {
+			return hr;
+		}else { System.out.println("Digite a hora no formato correto: ");
+				hr = input.nextLine();
+			return formatoHora(input, hr);
+		}
+	}
 }
