@@ -89,6 +89,20 @@ public class Main {
 		System.out.println("Digite o horario: [HH:MM]:");
 		hr = input.nextLine();
 		formatoHora(input, hr);
+		
+		// Verifica se já existe um compromisso com a mesma data e hora
+	    for (int i = 0; i < compromissos.size(); i++) {
+	        String[] compromisso = compromissos.get(i);
+	        
+	        // se já existir, ele exibe para o usuário e retorna na função
+	        if (compromisso[0].equals(data) && compromisso[1].equals(hr)) {
+	            System.out.println(" **Já existe um compromisso com essa data e hora** ");
+	            
+	            
+	            cadastro(input, compromissos);  // Chama novamente o cadastro
+	            return;  // Interrompe a execução da função atual para evitar continuar
+	        }
+	    }
 
 		System.out.println("Digite a  descrição do compromisso:");
 		desc = input.nextLine();
