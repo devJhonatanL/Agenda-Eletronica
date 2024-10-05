@@ -114,10 +114,11 @@ public class Main {
 		if (i >= 0 && i < compromissos.size()) {
 			System.out.println("Nova Data do compromisso: [dd/mm/aaaa]");
 			data = input.nextLine();
+			input.nextLine();
 
 			System.out.println("Digite o novo horario: [HH:MM]");
 			hr = input.nextLine();
-
+			
 			System.out.println("Digite a nova descrição do compromisso:");
 			desc = input.nextLine();
 
