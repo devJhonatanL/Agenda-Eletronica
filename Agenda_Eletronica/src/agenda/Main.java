@@ -72,12 +72,12 @@ public class Main {
 				listarTodosCompromissos(compromissos);
 				break;
 			case 8:
-				System.out.println("Encerrando a Agenda");
+				System.out.println("**Encerrando a Agenda**");
 				funcionamento = false;
 
 				break;
 			default:
-				System.out.println("Opção inválida. Tente novamente!");
+				System.out.println("**Opção inválida. Tente novamente!**");
 			}
 		}
 	}
@@ -115,7 +115,7 @@ public class Main {
 		String[] compromisso = { data, hr, desc, loc };
 		compromissos.add(compromisso);
 
-		System.out.println("Cadastrado");
+		System.out.println("**Cadastrado**");
 
 	}
 	// Editando um compromisso da agenda
@@ -305,7 +305,7 @@ public class Main {
 			}
 			System.out.println("\n **Informações registradas com sucesso.** \n");
 		} catch (IOException e) {
-			System.out.println("Erro ao registrar as informações. Tente novamente!");
+			System.out.println("**Erro ao registrar as informações. Tente novamente!**");
 		}
 	}
 
