@@ -115,7 +115,7 @@ public class Main {
 		String[] compromisso = { data, hr, desc, loc };
 		compromissos.add(compromisso);
 
-		System.out.println("**Cadastrado**");
+		// System.out.println("**Cadastrado**");
 
 	}
 	// Editando um compromisso da agenda
@@ -220,8 +220,9 @@ public class Main {
 			LocalDate dataCompromissoPassadoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
 			LocalTime horaComprimissoPassadoEncontrado = LocalTime.parse(compromissoIteracao[1], formatohora);
 
-			
-			if (dataCompromissoPassadoEncontrado.isBefore(LocalDate.now()) ||dataCompromissoPassadoEncontrado.isEqual(LocalDate.now()) && horaComprimissoPassadoEncontrado.isBefore(LocalTime.now())) {
+			if (dataCompromissoPassadoEncontrado.isBefore(LocalDate.now())
+					|| dataCompromissoPassadoEncontrado.isEqual(LocalDate.now())
+							&& horaComprimissoPassadoEncontrado.isBefore(LocalTime.now())) {
 
 				System.out.println("Data: " + compromissoIteracao[0] + " Hora: " + compromissoIteracao[1]
 						+ " Descrição: " + compromissoIteracao[2] + " Local: " + compromissoIteracao[3]);
@@ -250,7 +251,9 @@ public class Main {
 						compromissoAtual[1], compromissoAtual[2], compromissoAtual[3]);
 
 			}
+
 		}
+
 	}
 
 	// Função para listar todos os compromissos - Abner
@@ -309,7 +312,8 @@ public class Main {
 		}
 	}
 
-	// função para formatar data (ser obrigatório preencher a quantidade de "caracteres")
+	// função para formatar data (ser obrigatório preencher a quantidade de
+	// "caracteres")
 	public static String formatoData(Scanner input, String data) {
 		if (data.matches("\\d{2}\\/\\d{2}\\/\\d{4}")) {
 			return data;
@@ -320,7 +324,7 @@ public class Main {
 		}
 	}
 
-	// função para formato de hora 
+	// função para formato de hora
 	public static String formatoHora(Scanner input, String hr) {
 		if (hr.matches("\\d{2}\\:\\d{2}")) {
 			return hr;
