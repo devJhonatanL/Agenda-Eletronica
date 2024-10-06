@@ -309,6 +309,7 @@ public class Main {
 		}
 	}
 
+	// função para formatar data (ser obrigatório preencher a quantidade de "caracteres")
 	public static String formatoData(Scanner input, String data) {
 		if (data.matches("\\d{2}\\/\\d{2}\\/\\d{4}")) {
 			return data;
@@ -319,6 +320,7 @@ public class Main {
 		}
 	}
 
+	// função para formato de hora 
 	public static String formatoHora(Scanner input, String hr) {
 		if (hr.matches("\\d{2}\\:\\d{2}")) {
 			return hr;
