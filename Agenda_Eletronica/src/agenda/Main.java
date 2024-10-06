@@ -88,11 +88,11 @@ public class Main {
 
 		System.out.println("\nData do compromisso: [dd/mm/aaaa]:\n");
 		data = input.nextLine();
-		formatoData(input, data);
+		data = formatoData(input, data);
 
 		System.out.println("\nDigite o horario: [HH:MM]:\n");
 		hr = input.nextLine();
-		formatoHora(input, hr);
+		hr = formatoHora(input, hr);
 
 		// Verifica se já existe um compromisso com a mesma data e hora
 		for (int i = 0; i < compromissos.size(); i++) {
@@ -137,14 +137,14 @@ public class Main {
 			if (data.isBlank()) {
 				data = compromissos.get(i)[0]; // Mantém o valor anterior se for enviado um espaço em branco
 			}
-			formatoData(input, data);
+			data = formatoData(input, data);
 
 			System.out.println("\nDigite o novo horário: [HH:MM] (deixe em branco não quiser alterar)\n");
 			hr = input.nextLine();
 			if (hr.isBlank()) {
 				hr = compromissos.get(i)[1]; // Mantém o valor anterior se for enviado um espaço em branco
 			}
-			formatoHora(input, hr);
+			hr = formatoHora(input, hr);
 
 			System.out.println("\nDigite a nova descrição do compromisso: (deixe em branco não quiser alterar)\n");
 			desc = input.nextLine();
