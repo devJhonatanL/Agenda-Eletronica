@@ -3,3 +3,4 @@
 06/10/2024,08:00,Eleições Municipais,Brasil inteiro
 07/10/2024,19:00,Prova de Engenharia de Software,UEG
 12/12/2024,12:24,teste,teste
+10/10/2024,08:00,Teste,Teste
