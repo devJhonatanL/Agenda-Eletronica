@@ -186,14 +186,14 @@ public class Main {
 	}
 
 	// Função para listar compromissos futuros - ABNER
-	public static void compromissosFuturos(List<String[]> TodosCompromissos) {
+	public static void compromissosFuturos(List<String[]> compromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		System.out.println("\nCompromissos futuros:\n");
 
-		for (int i = 0; i < TodosCompromissos.size(); i++) {
+		for (int i = 0; i < compromissos.size(); i++) {
 
-			String[] compromissoIteracao = TodosCompromissos.get(i);
+			String[] compromissoIteracao = compromissos.get(i);
 
 			LocalDate dataCompromissofuturoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
 
@@ -208,15 +208,15 @@ public class Main {
 	}
 
 	// faz a mesma coisa da função listar compromisso futuro porem muda a condição da data
-	public static void compromissosPassados(List<String[]> TodosCompromissos) {
+	public static void compromissosPassados(List<String[]> compromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:mm");
 
 		System.out.println("\nCompromissos Passados:\n");
 
-		for (int i = 0; i < TodosCompromissos.size(); i++) {
+		for (int i = 0; i < compromissos.size(); i++) {
 
-			String[] compromissoIteracao = TodosCompromissos.get(i);
+			String[] compromissoIteracao = compromissos.get(i);
 
 			LocalDate dataCompromissoPassadoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
 			LocalTime horaComprimissoPassadoEncontrado = LocalTime.parse(compromissoIteracao[1], formatohora);
@@ -259,13 +259,13 @@ public class Main {
 	}
 
 	// Função para listar todos os compromissos 
-	public static void listarTodosCompromissos(List<String[]> todosCompromissos) {
+	public static void listarTodosCompromissos(List<String[]> compromissos) {
 
 		// verificando todos os compromissos com base nos cadastrados
-		for (int i = 0; i < todosCompromissos.size(); i++) {
+		for (int i = 0; i < compromissos.size(); i++) {
 
 			// pegando compromisso da iteração atual
-			String[] compromissoAtual = todosCompromissos.get(i);
+			String[] compromissoAtual = compromissos.get(i);
 
 			// exibindo compromissos cadastrados
 			System.out.printf("\n%d. Data: %s | Hora: %s | Descrição: %s | Local: %s%n", i + 1, compromissoAtual[0],
