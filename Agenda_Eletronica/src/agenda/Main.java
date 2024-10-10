@@ -188,6 +188,7 @@ public class Main {
 	// Função para listar compromissos futuros 
 	public static void compromissosFuturos(List<String[]> compromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:mm");
 
 		System.out.println("\nCompromissos futuros:\n");
 
@@ -196,9 +197,9 @@ public class Main {
 			String[] compromissoIteracao = compromissos.get(i);
 
 			LocalDate dataCompromissofuturoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
-
+			LocalTime horaComprimissofuturoEncontrado = LocalTime.parse(compromissoIteracao[1], formatohora);
 			// verifica se o compromisso da iteração atual é futuro e printa ele
-			if (dataCompromissofuturoEncontrado.isAfter(LocalDate.now())) {
+			if (dataCompromissofuturoEncontrado.isAfter(LocalDate.now()) || dataCompromissofuturoEncontrado.isEqual(LocalDate.now()) && horaComprimissofuturoEncontrado.isAfter(LocalTime.now()))  {
 
 				System.out.println("Data: " + compromissoIteracao[0] + " Hora: " + compromissoIteracao[1]
 						+ " Descrição: " + compromissoIteracao[2] + " Local: " + compromissoIteracao[3]);
@@ -279,9 +280,11 @@ public class Main {
 	// do codigo (no caso do nosso codigo, fica localizado na mesma pasta do codigo.
 
 	// Base lista 9 Natan
+	
+	// coverte a string em um array
 
 	public static void leituraDosDados(List<String[]> compromissos) {
-
+ 
 		try (BufferedReader leitor = new BufferedReader(new FileReader("compromissos.txt"))) {
 			String linha;
 			while ((linha = leitor.readLine()) != null) {
