@@ -185,7 +185,7 @@ public class Main {
 		}
 	}
 
-	// Função para listar compromissos futuros - ABNER
+	// Função para listar compromissos futuros 
 	public static void compromissosFuturos(List<String[]> compromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -238,7 +238,7 @@ public class Main {
 
 		// Solicitando valor
 		System.out.println("\nDigite a data para busca (dd/mm/aaaa): \n");
-		String dataFuturaBusca = scanner.nextLine();
+		String dataBusca = scanner.nextLine();
 
 		// verificando os compromissos com base na data
 		for (int i = 0; i < todosCompromissos.size(); i++) {
@@ -247,7 +247,7 @@ public class Main {
 			String dataCompromissoAtual = compromissoAtual[0];
 
 			// verifica se a data de busca é igual a data do "compromissoAtual"
-			if (dataFuturaBusca.equals(dataCompromissoAtual)) {
+			if (dataBusca.equals(dataCompromissoAtual)) {
 
 				System.out.printf("Data: %s | Hora: %s | Descrição: %s | Local: %s%n", compromissoAtual[0],
 						compromissoAtual[1], compromissoAtual[2], compromissoAtual[3]);
@@ -288,9 +288,9 @@ public class Main {
 				String[] compromisso = linha.split(",");
 				compromissos.add(compromisso);
 			}
-			System.out.println("\n **Informações carregados com sucesso.**\n");
+			System.out.println("\n**Informações carregados com sucesso.**\n");
 		} catch (IOException e) {
-			System.out.println("\n **Nenhum registro encontrado.Tente novamente!** \n");
+			System.out.println("\n**Nenhum registro encontrado.Tente novamente!** \n");
 		}
 	}
 
@@ -309,7 +309,7 @@ public class Main {
 			}
 			System.out.println("\n **Informações registradas com sucesso.** \n");
 		} catch (IOException e) {
-			System.out.println("**Erro ao registrar as informações. Tente novamente!**");
+			System.out.println("\n**Erro ao registrar as informações. Tente novamente!** \n");
 		}
 	}
 
