@@ -207,6 +207,7 @@ public class Main {
 		}
 	}
 
+	// faz a mesma coisa da função listar compromisso futuro porem muda a condição da data
 	public static void compromissosPassados(List<String[]> TodosCompromissos) {
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:mm");
@@ -220,6 +221,7 @@ public class Main {
 			LocalDate dataCompromissoPassadoEncontrado = LocalDate.parse(compromissoIteracao[0], formatoData);
 			LocalTime horaComprimissoPassadoEncontrado = LocalTime.parse(compromissoIteracao[1], formatohora);
 
+			// alteração de verificação da data
 			if (dataCompromissoPassadoEncontrado.isBefore(LocalDate.now())
 					|| dataCompromissoPassadoEncontrado.isEqual(LocalDate.now())
 							&& horaComprimissoPassadoEncontrado.isBefore(LocalTime.now())) {
@@ -256,7 +258,7 @@ public class Main {
 
 	}
 
-	// Função para listar todos os compromissos - Abner
+	// Função para listar todos os compromissos 
 	public static void listarTodosCompromissos(List<String[]> todosCompromissos) {
 
 		// verificando todos os compromissos com base nos cadastrados
@@ -272,7 +274,6 @@ public class Main {
 		}
 	}
 
-	// Jhonatan
 
 	// função que le os compromissos registrados em um arquivo ja existente na raiz
 	// do codigo (no caso do nosso codigo, fica localizado na mesma pasta do codigo.
